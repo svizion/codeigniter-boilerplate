@@ -30,13 +30,13 @@
 
   <!-- CSS concatenated and minified via ant build script-->
   <?php /* codeigniter-boilerplate: Styles **********************************/ ?>
-  <link rel="stylesheet" href="<?php echo base_url()?>css/style.css">
+  <link rel="stylesheet" href="<?php echo base_url()?>assets/css/style.css">
   <?php foreach($css as $c):?>
-  <link rel="stylesheet" href="<?php echo base_url()?>css/<?php echo $c?>">
+  <link rel="stylesheet" href="<?php echo base_url()?>assets/css/<?php echo $c?>">
   <?php endforeach;?>  
   <!-- end CSS-->
 
-  <script src="<?php echo base_url()?>js/libs/modernizr-2.0.6.min.js"></script>
+  <script src="<?php echo base_url()?>assets/js/libs/modernizr-2.0.6.min.js"></script>
   
   <?php /* codeigniter-boilerplate: Google Fonts ****************************/ ?>
   <?php foreach($GFont as $f):?>
@@ -67,17 +67,17 @@
 
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="<?php echo base_url()?>js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+  <script>window.jQuery || document.write('<script src="<?php echo base_url()?>assets/js/libs/jquery-1.6.2.min.js"><\/script>')</script>
 
 
   <!-- scripts concatenated and minified via ant build script-->
-  <script defer src="<?php echo base_url()?>js/plugins.js"></script>
-  <script defer src="<?php echo base_url()?>js/script.js"></script>
+  <script defer src="<?php echo base_url()?>assets/js/plugins.js"></script>
+  <script defer src="<?php echo base_url()?>assets/js/script.js"></script>
   <!-- end scripts-->
   
   <?php /* codeigniter-boilerplate: Scripts *********************************/?>
   <?php foreach($javascript as $js):?>
-  <script defer src="<?php echo base_url()?>js/<?php echo $js?>"></script>
+  <script defer src="<?php echo base_url()?>assets/js/<?php echo $js?>"></script>
   <?php endforeach;?>
 
   <script> // Change UA-XXXXX-X to be your site's ID

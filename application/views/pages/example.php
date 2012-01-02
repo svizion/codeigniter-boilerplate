@@ -20,4 +20,4 @@ class Example extends BP_Controller {
 }
 </pre>
 
-<img src="<?php echo base_url()?>images/BP/logo.png" id="logo"/>
+<img src="<?php echo base_url()?>assets/images/BP/logo.png" id="logo"/>
