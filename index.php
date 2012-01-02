@@ -34,6 +34,11 @@ if (defined('ENVIRONMENT'))
 	{
 		case 'development':
 			error_reporting(E_ALL);
+			if (!ini_get('display_errors'))
+            {
+	            ini_set('display_errors', 1);
+            }
+
 		break;
 	
 		case 'testing':
@@ -56,7 +61,7 @@ if (defined('ENVIRONMENT'))
  * as this file.
  *
  */
-	$system_path = 'system';
+	$system_path = 'vms/system';
 
 /*
  *---------------------------------------------------------------
@@ -72,7 +77,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = 'application';
+	$application_folder = 'vms/app';
 
 /*
  * --------------------------------------------------------------------
