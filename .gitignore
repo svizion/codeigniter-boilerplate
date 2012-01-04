@@ -39,3 +39,4 @@ publish
 build/buildinfo.properties
 build/config/buildinfo.properties
 database.php
+app/config/database.php
