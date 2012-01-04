@@ -53,7 +53,8 @@ $autoload['packages'] = array(APPPATH.'third_party');
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array( 'database' );
+//$autoload['libraries'] = array('template', 'assets', 'events');
+$autoload['libraries'] = array( 'database', 'session' );
 
 
 /*
@@ -65,7 +66,7 @@ $autoload['libraries'] = array( 'database' );
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url');
+$autoload['helper'] = array('url', 'language');
 
 
 /*
@@ -81,7 +82,7 @@ $autoload['helper'] = array('url');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('application');
 
 
 /*

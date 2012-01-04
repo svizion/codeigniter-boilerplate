@@ -12,8 +12,12 @@ class Base_Controller extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->config->database();
+  //      $this->load->database();
+  //      $this->config->database();
         // Load additional libraries
+
+//        $this->load->driver('cache', array('adapter' => 'file'));
+
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->CI =& $this;    // Hack to make it work properly with HMVC        
@@ -54,6 +58,18 @@ class Front_Controller extends Base_Controller {
         parent::__construct();
         $this->page_id = strToLower(get_class($this));
         $this->view = "pages/".$this->page_id;
+
+
+        // Profiler Bar?
+        if (ENVIRONMENT == 'development')
+        {
+            $this->load->library('Console');
+            
+            if (!$this->input->is_cli_request() ) //&& config_item('site.show_front_profiler'))
+            {
+                $this->output->enable_profiler(true);
+            }
+        }
 
     }
 
