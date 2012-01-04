@@ -1,15 +1,34 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 /**
- * BP_Controller
- * Provides a basic extension of CI_Controller to implement codeigniter-boilerplate
- * logics. 
+ Base_Contoller
+ Provides the basic extension of CI_Controller to implement general site setup
+*/
+class Base_Controller extends MX_Controller {
+
+    /**
+     * @desc build and setup basic info
+     */
+    public function __construct(){
+
+        // Load additional libraries
+//        $this->load->helper('form');
+//        $this->load->library('form_validation');
+//        $this->form_validation->CI =& $this;    // Hack to make it work properly with HMVC        
+    }
+
+}
+
+/**
+ * Front_Controller
+ * Setups the front end of the website extend Front_Controller for public pages
  *
  * Extend this class to create a page.
  *
  * @package		codeigniter-boilerplate
  * @author		Yari D'areglia yari@jumpzero.com
  */
-class MY_Controller extends MX_Controller{
+class Front_Controller extends Base_Controller {
     
     //Page info
     protected $page_id = false;
@@ -33,6 +52,7 @@ class MY_Controller extends MX_Controller{
         parent::__construct();
         $this->page_id = strToLower(get_class($this));
         $this->view = "pages/".$this->page_id;
+
     }
 
     /**
@@ -90,5 +110,5 @@ class MY_Controller extends MX_Controller{
     
 }
 
-/*End of file BP_Controller.php*/
-/*Location .application/core/BP_Controller.php*/
+/*End of file MY_Controller.php*/
+/*Location .application/core/MY_Controller.php*/

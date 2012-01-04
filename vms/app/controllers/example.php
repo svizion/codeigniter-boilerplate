@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Example extends MY_Controller {
+class Example extends Front_Controller {
 
     public function index()
     {

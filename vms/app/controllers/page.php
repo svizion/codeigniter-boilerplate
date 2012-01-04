@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome2 extends Front_Controller {
+class Page extends Front_Controller {
 
     public function index()
     {
@@ -28,4 +28,4 @@ class Welcome2 extends Front_Controller {
     }
 }
 /*End of file example.php*/
-/*Location .application/controllers/example.php*/
+/*Location .application/controllers/page.php*/
