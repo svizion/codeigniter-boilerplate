@@ -9,8 +9,9 @@ class Base_Controller extends MX_Controller {
     /**
      * @desc build and setup basic info
      */
-    public function __construct(){
-
+    public function __construct()
+    {
+//        $this->config->database();
         // Load additional libraries
 //        $this->load->helper('form');
 //        $this->load->library('form_validation');
