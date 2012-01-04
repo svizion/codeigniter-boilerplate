@@ -12,7 +12,7 @@ class Base_Controller extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
-  //      $this->load->database();
+        $this->load->database();
   //      $this->config->database();
         // Load additional libraries
 
@@ -39,7 +39,7 @@ class Front_Controller extends Base_Controller {
     //Page info
     protected $page_id = false;
     protected $view = false;
-    protected $template = "main";
+    protected $template = 'main';
     protected $hasNav = true;
     //Page contents
     public $javascript = array();
