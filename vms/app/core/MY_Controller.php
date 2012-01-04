@@ -11,11 +11,12 @@ class Base_Controller extends MX_Controller {
      */
     public function __construct()
     {
-//        $this->config->database();
+        parent::__construct();
+        $this->config->database();
         // Load additional libraries
-//        $this->load->helper('form');
-//        $this->load->library('form_validation');
-//        $this->form_validation->CI =& $this;    // Hack to make it work properly with HMVC        
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->CI =& $this;    // Hack to make it work properly with HMVC        
     }
 
 }
