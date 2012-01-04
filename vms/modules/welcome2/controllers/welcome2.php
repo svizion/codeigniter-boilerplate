@@ -19,8 +19,8 @@ class Welcome2 extends Front_Controller {
         $this->GFont = array("Lobster","Puritan");
 
         //Somedata for the page.
-        $toView["day"] = strftime("%A",strtotime("today"));
-
+        $toView["day"] = 'Its friday everyday';
+echo 'Inside of Modules/welcome2';
         /*short cut to load->view("pages/page_name",$content,true)*/
         $this->build_content($toView);
 
