@@ -40,7 +40,7 @@
 
 $route['default_controller'] = "homepage";
 $route['404_override'] = '';
-
+$route['auth/(.*)'] = 'auth/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

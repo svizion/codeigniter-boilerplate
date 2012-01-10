@@ -6,36 +6,6 @@
 */
 class Base_Controller extends MX_Controller {
 
-    /**
-     * @desc build and setup basic info
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->database();
-  //      $this->config->database();
-        // Load additional libraries
-
-//        $this->load->driver('cache', array('adapter' => 'file'));
-
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        $this->form_validation->CI =& $this;    // Hack to make it work properly with HMVC        
-    }
-
-}
-
-/**
- * Front_Controller
- * Setups the front end of the website extend Front_Controller for public pages
- *
- * Extend this class to create a page.
- *
- * @package		codeigniter-boilerplate
- * @author		Yari D'areglia yari@jumpzero.com
- */
-class Front_Controller extends Base_Controller {
-    
     //Page info
     protected $page_id = false;
     protected $view = false;
@@ -54,23 +24,21 @@ class Front_Controller extends Base_Controller {
     /**
      * @desc build and setup basic info
      */
-    public function __construct(){
-        parent::__construct();
-        $this->page_id = strToLower(get_class($this));
-        $this->view = "pages/".$this->page_id;
+    public function __construct()
+    {
+      //Events::trigger('before_controller', get_class($this));
+      parent::__construct();
+      
+      $this->load->database();
+//      $this->config->database();
+      // Load additional libraries
 
+//        $this->load->driver('cache', array('adapter' => 'file'));
 
-        // Profiler Bar?
-        if (ENVIRONMENT == 'development')
-        {
-            $this->load->library('Console');
-            
-            if (!$this->input->is_cli_request() ) //&& config_item('site.show_front_profiler'))
-            {
-                $this->output->enable_profiler(true);
-            }
-        }
-
+      $this->load->helper('form');
+      $this->load->library('form_validation');
+      $this->form_validation->CI =& $this;    // Hack to make it work properly with HMVC       
+      //Events::trigger('after_controller_constructor', get_class($this)); 
     }
 
     /**
@@ -125,8 +93,91 @@ class Front_Controller extends Base_Controller {
     public function get_template(){  
         return $this->template;
     }
+
+}
+
+/**
+ * Front_Controller
+ * Setups the front end of the website extend Front_Controller for public pages
+ *
+ * Extend this class to create a page.
+ *
+ * @package		codeigniter-boilerplate
+ * @author		Yari D'areglia yari@jumpzero.com
+ */
+class Front_Controller extends Base_Controller {
+    
+    /**
+     * @desc build and setup basic info
+     */
+    public function __construct(){
+        parent::__construct();
+        $this->page_id = strToLower(get_class($this));
+        $this->view = "pages/".$this->page_id;
+
+
+        // Profiler Bar?
+        if (ENVIRONMENT == 'development')
+        {
+            $this->load->library('Console');
+            
+            if ( !$this->input->is_cli_request() && config_item('site.show_front_profiler') )
+            {
+                $this->output->enable_profiler(true);
+            }
+        }
+
+    }
+
     
 }
 
+//--------------------------------------------------------------------
+
+/*
+  Class: Authenticated_Controller
+  
+  Provides a base class for all controllers that must check user login
+  status.
+  
+  Extends:
+    Base_Controller
+*/
+class Authenticated_Controller extends Base_Controller {
+
+  //--------------------------------------------------------------------
+  
+  public function __construct() 
+  {
+    parent::__construct();  
+    
+    $this->load->library('auth/ion_auth');
+    
+    $this->page_id = strToLower(get_class($this));
+    $this->view = "pages/".$this->page_id;
+    
+    
+    if (!$this->ion_auth->logged_in())
+    {
+      redirect('/auth/login');
+      exit(0);
+    }
+
+    // Profiler Bar?
+    if (ENVIRONMENT == 'development')
+    {
+      $this->load->library('Console');
+      
+      if ( !$this->input->is_cli_request() ) //&& config_item('site.show_front_profiler') )
+      {
+          $this->output->enable_profiler(true);
+      }
+    }
+
+
+
+  }
+
+}
 /*End of file MY_Controller.php*/
 /*Location .application/core/MY_Controller.php*/
