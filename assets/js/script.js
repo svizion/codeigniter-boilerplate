@@ -1,26 +1,3 @@
-/* Author: 
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$(function(){
+    $(".alert-message").alert()
+});
