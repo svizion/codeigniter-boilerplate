@@ -49,7 +49,7 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
+$db['default']['username'] = 'cibp';
 $db['default']['password'] = 'test3';
 $db['default']['database'] = 'new-ci';
 $db['default']['dbdriver'] = 'mysql';
