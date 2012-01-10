@@ -8,9 +8,13 @@ class Base_Controller extends MX_Controller {
 
     //Page info
     protected $page_id = false;
+    
     protected $view = false;
+    
     protected $template = 'main';
-    protected $hasNav = true;
+    
+    protected $hasNav = true;      
+
     //Page contents
     public $javascript = array();
     public $css = array();
@@ -147,6 +151,10 @@ class Authenticated_Controller extends Base_Controller {
 
   //--------------------------------------------------------------------
   
+  protected $the_user;
+  
+  //--------------------------------------------------------------------
+  
   public function __construct() 
   {
     parent::__construct();  
@@ -154,15 +162,17 @@ class Authenticated_Controller extends Base_Controller {
     $this->load->library('auth/ion_auth');
     
     $this->page_id = strToLower(get_class($this));
-    $this->view = "pages/".$this->page_id;
+    $this->view = 'pages/'.$this->page_id;
     
-    
-    if (!$this->ion_auth->logged_in())
+    if ( $this->ion_auth->logged_in() ) 
     {
-      redirect('/auth/login');
-      exit(0);
+      $data->the_user = $this->ion_auth->user()->row();
+      $this->the_user = $data->the_user;
+      $this->load->vars($data);
+    } else {
+      redirect('/auth/login', 'refresh');
     }
-
+        
     // Profiler Bar?
     if (ENVIRONMENT == 'development')
     {
@@ -179,5 +189,61 @@ class Authenticated_Controller extends Base_Controller {
   }
 
 }
+
+
+//--------------------------------------------------------------------
+
+/*
+  Class: Admin_Controller
+  
+  Provides a base class for all admin controllers that must check user login
+  status.
+  
+  Extends:
+    Base_Controller
+*/
+class Admin_Controller extends Base_Controller {
+
+  //--------------------------------------------------------------------
+  
+  protected $the_user;
+  
+  //--------------------------------------------------------------------
+  
+  public function __construct() 
+  {
+    parent::__construct();  
+    
+    $this->load->library('auth/ion_auth');
+    
+    $this->page_id = strToLower(get_class($this));
+    $this->view = "pages/".$this->page_id;
+    
+    if ( $this->ion_auth->is_admin() ) 
+    {
+      $data->the_user = $this->ion_auth->user()->row();
+      $this->the_user = $data->the_user;
+      $this->load->vars($data);
+    } else {
+      redirect('/auth/login', 'refresh');
+    }
+        
+    // Profiler Bar?
+    if (ENVIRONMENT == 'development')
+    {
+      $this->load->library('Console');
+      
+      if ( !$this->input->is_cli_request() ) //&& config_item('site.show_front_profiler') )
+      {
+          $this->output->enable_profiler(true);
+      }
+    }
+
+
+
+  }
+
+}
+
 /*End of file MY_Controller.php*/
 /*Location .application/core/MY_Controller.php*/
